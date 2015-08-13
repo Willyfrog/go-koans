@@ -7,8 +7,12 @@ func divideFourBy(i int) int {
 const __divisor__ = 0
 
 func aboutPanics() {
-	assert(__delete_me__) // panics are exceptional errors at runtime
-
-	n := divideFourBy(__divisor__)
+	assert(true) // panics are exceptional errors at runtime
+	var n int
+	defer func() {
+		recover()
+		n = 2
+	}()
+	n = divideFourBy(__divisor__)
 	assert(n == 2) // panics are exceptional errors at runtime
 }
